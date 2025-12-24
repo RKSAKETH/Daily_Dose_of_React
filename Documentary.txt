@@ -1,0 +1,41 @@
+1.
+Assuming that the "element" is integer datatype
+Bad practice : 
+{suggestions.length && ( ... ) }
+Correct practice :
+{suggestions.length > 0 && ( ... )}
+
+If it's boolean type : {loading && <div></div>}
+
+2.
+() => expression      // implicit return
+() => { statement }  // explicit return needed
+
+3.
+console.error() is a JavaScript debugging function that prints error messages to the browser’s developer console.
+
+4.
+Debouce Timer - 
+In the context of a Search Bar (like your snippet), here is the step-by-step lifecycle:
+
+User types 'H':
+React sees the query changed.
+It schedules a timer: "In 300ms, fetch data for 'H'."
+
+User types 'E' (100ms later):
+React sees query changed to "He".
+Cleanup runs: The previous timer (for 'H') is cancelled (clearTimeout). It never fires.
+New Timer: A new timer starts: "In 300ms, fetch data for 'He'."
+
+User types 'L' (50ms later):
+Cleanup runs: The timer for "He" is cancelled.
+New Timer: A new timer starts for "Hel".
+User stops typing:
+The 300ms timer finally finishes without being cancelled.
+fetchSuggestions('Hel') executes.
+
+Without debouncing, if a user types "Hello World" (11 characters):
+Without Debounce: You send 11 separate API requests to your server (one for 'H', one for 'He', etc.). This strains your server and slows down the UI.
+With Debounce: You send 1 API request (only for the final 'Hello World').
+
+Type how much you want for 300 ms , I will send the text at the end of 300 ms.
